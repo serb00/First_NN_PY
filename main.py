@@ -1,5 +1,8 @@
 # import train
-# train.train(20, "model1")
+# train.train(epochs=20, filename="model1", retrain=True)
+
+# import predict
+# predict.predict_random_image("model1")
 
 import predict
-predict.predict_random_image("model1")
+predict.find_error("model1")

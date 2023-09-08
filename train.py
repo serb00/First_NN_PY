@@ -2,14 +2,19 @@ import numpy as np
 import utils
 
 
-def train(epochs, filename):
+def train(epochs, filename, retrain):
     images, labels = utils.load_dataset()
 
-    weights_input_to_hidden = np.random.uniform(-0.5, 0.5, (20, 784))
-    weights_hidden_to_output = np.random.uniform(-0.5, 0.5, (10, 20))
+    if retrain:
+        (weights_input_to_hidden, weights_hidden_to_output,
+         bias_input_to_hidden, bias_hidden_to_output
+         ) = utils.load_variables(f"{filename}.npz")
+    else:
+        weights_input_to_hidden = np.random.uniform(-0.5, 0.5, (20, 784))
+        weights_hidden_to_output = np.random.uniform(-0.5, 0.5, (10, 20))
 
-    bias_input_to_hidden = np.zeros((20, 1))
-    bias_hidden_to_output = np.zeros((10, 1))
+        bias_input_to_hidden = np.zeros((20, 1))
+        bias_hidden_to_output = np.zeros((10, 1))
 
     e_loss = 0
     e_correct = 0
